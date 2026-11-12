@@ -1,5 +1,5 @@
 from datetime import datetime
-from app.schemas.diagnostic import DiagnosticItemIn, RuleResult
+from app.schemas.diagnostic import DiagnosticItemIn, RuleResult, LlmResult
 
 def now() -> str:
     """Current local time as ISO text (SQLite has no datetime type)."""
@@ -42,3 +42,13 @@ def save_run(conn, equipment_id: int, items: list[DiagnosticItemIn], result: Rul
 
     conn.commit()
     return run_id
+
+def save_llm(conn, run_id: int, llm: LlmResult) -> None:
+    """Fill the LLM columns of a saved run. Rule verdict columns are not touched."""
+    conn.execute(
+        "UPDATE diagnostic_run "
+        "SET llm_status = ?, llm_summary = ?, llm_model = ?, llm_elapsed_ms = ? "
+        "WHERE id = ?",
+        (llm.status, llm.summary, llm.model, llm.elapsed_ms, run_id),
+    )
+    conn.commit()
