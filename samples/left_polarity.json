@@ -1,0 +1,13 @@
+{
+  "equipment_id": 1,
+  "items": [
+    {"seq": 1, "name": "좌모터 단독 전진", "command": "M1=+30 M2=0", "expected": "우측 선회", "observed": "좌측 선회"},
+    {"seq": 2, "name": "좌모터 단독 후진", "command": "M1=-30 M2=0", "expected": "좌측 선회", "observed": "우측 선회"},
+    {"seq": 3, "name": "우모터 단독 전진", "command": "M1=0 M2=+30", "expected": "좌측 선회", "observed": "좌측 선회"},
+    {"seq": 4, "name": "우모터 단독 후진", "command": "M1=0 M2=-30", "expected": "우측 선회", "observed": "우측 선회"},
+    {"seq": 5, "name": "양쪽 전진", "command": "M1=+30 M2=+30", "expected": "직진", "observed": "직진"},
+    {"seq": 6, "name": "양쪽 후진", "command": "M1=-30 M2=-30", "expected": "후진", "observed": "후진"},
+    {"seq": 7, "name": "제자리 좌회전", "command": "M1=-30 M2=+30", "expected": "제자리 좌회전", "observed": "제자리 좌회전"},
+    {"seq": 8, "name": "제자리 우회전", "command": "M1=+30 M2=-30", "expected": "제자리 우회전", "observed": "제자리 우회전"}
+  ]
+}

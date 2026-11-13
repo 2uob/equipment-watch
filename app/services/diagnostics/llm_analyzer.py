@@ -29,6 +29,7 @@ def call_ollama(prompt: str) -> str:
         "model": MODEL,
         "prompt": prompt,
         "stream": False,
+        "keep_alive": "1h",
         "options": {"num_predict": 200},
     }).encode("utf-8")
     req = urllib.request.Request(OLLAMA_URL, data=body, headers={"Content-Type": "application/json"})
